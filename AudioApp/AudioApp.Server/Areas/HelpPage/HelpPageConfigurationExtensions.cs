@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using UploadToServer.Server.Areas.HelpPage.ModelDescriptions;
-using UploadToServer.Server.Areas.HelpPage.Models;
+using AudioApp.Server.Areas.HelpPage.ModelDescriptions;
+using AudioApp.Server.Areas.HelpPage.Models;
 
-namespace UploadToServer.Server.Areas.HelpPage
+namespace AudioApp.Server.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

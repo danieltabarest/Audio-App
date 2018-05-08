@@ -3,7 +3,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace UploadToServer.Server.Areas.HelpPage
+namespace AudioApp.Server.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions
     {

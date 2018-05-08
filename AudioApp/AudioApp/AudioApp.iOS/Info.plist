@@ -23,9 +23,9 @@
     <key>MinimumOSVersion</key>
     <string>6.0</string>
     <key>CFBundleDisplayName</key>
-    <string>UploadToServer</string>
+    <string>AudioApp</string>
     <key>CFBundleIdentifier</key>
-    <string>com.yourcompany.UploadToServer</string>
+    <string>com.yourcompany.AudioApp</string>
     <key>CFBundleVersion</key>
     <string>1.0</string>
     <key>CFBundleIconFiles</key>

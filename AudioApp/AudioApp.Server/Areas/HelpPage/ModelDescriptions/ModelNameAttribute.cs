@@ -1,6 +1,6 @@
 using System;
 
-namespace UploadToServer.Server.Areas.HelpPage.ModelDescriptions
+namespace AudioApp.Server.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Use this attribute to change the name of the <see cref="ModelDescription"/> generated for a type.

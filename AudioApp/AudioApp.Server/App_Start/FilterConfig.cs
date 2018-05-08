@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace UploadToServer.Server
+namespace AudioApp.Server
 {
     public class FilterConfig
     {

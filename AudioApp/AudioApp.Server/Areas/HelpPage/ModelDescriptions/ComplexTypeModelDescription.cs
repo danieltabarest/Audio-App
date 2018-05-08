@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace UploadToServer.Server.Areas.HelpPage.ModelDescriptions
+namespace AudioApp.Server.Areas.HelpPage.ModelDescriptions
 {
     public class ComplexTypeModelDescription : ModelDescription
     {

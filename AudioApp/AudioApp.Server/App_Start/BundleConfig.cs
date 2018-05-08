@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace UploadToServer.Server
+namespace AudioApp.Server
 {
     public class BundleConfig
     {

@@ -4,7 +4,7 @@ using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Xamarin.Forms;
 
-namespace UploadToServer
+namespace AudioApp
 {
     public partial class MainPage : ContentPage
     {
@@ -77,7 +77,7 @@ namespace UploadToServer
             var httpClient = new HttpClient();
 
             var uploadServiceBaseAddress = "http://localhost:12214/api/Files/Upload";
-                //"http://uploadtoserver.azurewebsites.net/api/Files/Upload";
+                //"http://AudioApp.azurewebsites.net/api/Files/Upload";
             //"http://localhost:12214/api/Files/Upload";
 
             var httpResponseMessage = await httpClient.PostAsync(uploadServiceBaseAddress, content);

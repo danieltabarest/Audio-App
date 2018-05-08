@@ -5,9 +5,9 @@ using System.Reflection;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
 using System.Xml.XPath;
-using UploadToServer.Server.Areas.HelpPage.ModelDescriptions;
+using AudioApp.Server.Areas.HelpPage.ModelDescriptions;
 
-namespace UploadToServer.Server.Areas.HelpPage
+namespace AudioApp.Server.Areas.HelpPage
 {
     /// <summary>
     /// A custom <see cref="IDocumentationProvider"/> that reads the API documentation from an XML documentation file.

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace UploadToServer.Server
+namespace AudioApp.Server
 {
     public static class WebApiConfig
     {

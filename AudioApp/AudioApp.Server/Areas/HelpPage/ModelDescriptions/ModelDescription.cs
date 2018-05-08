@@ -1,6 +1,6 @@
 using System;
 
-namespace UploadToServer.Server.Areas.HelpPage.ModelDescriptions
+namespace AudioApp.Server.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Describes a type model.

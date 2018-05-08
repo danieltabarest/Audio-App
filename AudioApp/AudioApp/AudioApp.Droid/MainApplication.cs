@@ -5,7 +5,7 @@ using Android.OS;
 using Android.Runtime;
 using Plugin.CurrentActivity;
 
-namespace UploadToServer.Droid
+namespace AudioApp.Droid
 {
 	//You can specify additional application information in this attribute
     [Application]

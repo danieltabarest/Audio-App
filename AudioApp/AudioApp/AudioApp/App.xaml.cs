@@ -5,7 +5,7 @@ using System.Text;
 
 using Xamarin.Forms;
 
-namespace UploadToServer
+namespace AudioApp
 {
     public partial class App : Application
     {
@@ -13,7 +13,7 @@ namespace UploadToServer
         {
             InitializeComponent();
 
-            MainPage = new UploadToServer.MainPage();
+            MainPage = new AudioApp.MainPage();
         }
 
         protected override void OnStart()

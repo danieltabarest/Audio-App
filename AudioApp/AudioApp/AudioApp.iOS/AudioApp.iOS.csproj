@@ -8,9 +8,9 @@
     <ProjectGuid>{E16CB227-AE19-455D-913E-5AE79849E38C}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>UploadToServer.iOS</RootNamespace>
+    <RootNamespace>AudioApp.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>UploadToServeriOS</AssemblyName>
+    <AssemblyName>AudioAppiOS</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>

@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace UploadToServer.Server.Areas.HelpPage.ModelDescriptions
+namespace AudioApp.Server.Areas.HelpPage.ModelDescriptions
 {
     internal static class ModelNameHelper
     {

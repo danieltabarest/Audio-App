@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http.Headers;
 using System.Web.Http.Description;
-using UploadToServer.Server.Areas.HelpPage.ModelDescriptions;
+using AudioApp.Server.Areas.HelpPage.ModelDescriptions;
 
-namespace UploadToServer.Server.Areas.HelpPage.Models
+namespace AudioApp.Server.Areas.HelpPage.Models
 {
     /// <summary>
     /// The model that represents an API displayed on the help page.

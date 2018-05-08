@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace UploadToServer.iOS
+namespace AudioApp.iOS
 {
     public class Application
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace UploadToServer.Server.Areas.HelpPage.ModelDescriptions
+namespace AudioApp.Server.Areas.HelpPage.ModelDescriptions
 {
     public interface IModelDocumentationProvider
     {

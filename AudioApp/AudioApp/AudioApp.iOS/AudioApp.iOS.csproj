@@ -147,8 +147,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AudioApp\AudioApp.csproj">
-      <Project>{D82FC3B4-FBA0-43DD-8B8B-8F163C399339}</Project>
-      <Name>UploadToServer</Name>
+      <Project>{d82fc3b4-fba0-43dd-8b8b-8f163c399339}</Project>
+      <Name>AudioApp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

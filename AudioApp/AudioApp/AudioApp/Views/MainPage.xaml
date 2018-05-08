@@ -12,6 +12,20 @@
            TextColor="Black"
            FontSize="36"/>
 
+            <Label x:Name="LocalPathLabel"
+           TextColor="Black"
+           FontSize="18"/>
+
+
+            <StackLayout Padding="20,80,20,0" Orientation="Vertical" Spacing="15">
+                <StackLayout Orientation="Horizontal">
+                    <Switch x:Name="TimeoutSwitch" IsToggled="True" />
+                    <Label Text="Timeout after silence?" />
+                </StackLayout>
+                <Button x:Name="RecordButton" Text="Record" FontSize="24" HorizontalOptions="FillAndExpand" Clicked="Record_Clicked" />
+                <Button x:Name="PlayButton" Text="Play" FontSize="24" HorizontalOptions="FillAndExpand" Clicked="Play_Clicked" IsEnabled="False" />
+            </StackLayout>
+
             <Button Text="Pick Photo"
             BackgroundColor="Teal"
             TextColor="White"
@@ -28,11 +42,7 @@
            WidthRequest="400"
            HeightRequest="220"/>
 
-            <Label x:Name="LocalPathLabel"
-           TextColor="Black"
-           FontSize="18"/>
-
-            <Button Text="Upload Photo"
+            <Button Text="Upload FILE"
             BackgroundColor="Purple"
             TextColor="White"
             FontSize="40"
@@ -42,14 +52,6 @@
            FontSize="20"
            TextColor="Black"/>
 
-            <StackLayout Padding="20,80,20,0" Orientation="Vertical" Spacing="15">
-                <StackLayout Orientation="Horizontal">
-                    <Switch x:Name="TimeoutSwitch" IsToggled="True" />
-                    <Label Text="Timeout after silence?" />
-                </StackLayout>
-                <Button x:Name="RecordButton" Text="Record" FontSize="24" HorizontalOptions="FillAndExpand" Clicked="Record_Clicked" />
-                <Button x:Name="PlayButton" Text="Play" FontSize="24" HorizontalOptions="FillAndExpand" Clicked="Play_Clicked" IsEnabled="False" />
-            </StackLayout>
 
         </StackLayout>
     </ScrollView>

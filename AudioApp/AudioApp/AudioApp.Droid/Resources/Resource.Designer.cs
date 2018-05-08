@@ -26,6 +26,8 @@ namespace AudioApp.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Plugin.AudioRecorder.Resource.String.ApplicationName = global::AudioApp.Droid.Resource.String.ApplicationName;
+			global::Plugin.AudioRecorder.Resource.String.Hello = global::AudioApp.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Resource.Animation.abc_fade_in = global::AudioApp.Droid.Resource.Animation.abc_fade_in;
 			global::Xamarin.Forms.Platform.Resource.Animation.abc_fade_out = global::AudioApp.Droid.Resource.Animation.abc_fade_out;
 			global::Xamarin.Forms.Platform.Resource.Animation.abc_grow_fade_in_from_bottom = global::AudioApp.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;

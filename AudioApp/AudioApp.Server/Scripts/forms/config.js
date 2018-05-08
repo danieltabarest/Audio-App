@@ -1,0 +1,3 @@
+﻿var configuration = {
+    "urlserver":"http://"
+};

@@ -1,0 +1,239 @@
+﻿@{
+    ViewBag.Title = "IndexVisitas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/knockout-3.4.2.js"></script>
+<script src="~/Scripts/forms/jsVisitaAnexos.js"></script>
+
+<input type="hidden" id="txtProyectoId" />
+<input type="hidden" id="txtUPMId" />
+<input type="hidden" id="txtVisitaId" />
+<input type="hidden" id="txtRuta" />
+
+<style>
+    .removeborder {
+        resize: none;
+        width: 100%;
+    }
+</style>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Anexos<small>&nbsp;</small></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form method="get" class="form-horizontal" id="InconformidadAspectosForm">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Proyecto:</label>
+                                        <div class="input-group">
+                                            <input type="text" id="txtProyecto" readonly="readonly" class="form-control" /><span class="input-group-btn">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalProyectos">
+                                                    <i class="fa fa-retweet"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>UPMs:</label>
+                                        <div class="input-group">
+                                            <input type="text" id="txtUPM" readonly="readonly" class="form-control" /><span class="input-group-btn">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalUPMs">
+                                                    <i class="fa fa-retweet"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Visita:</label>
+                                        <div class="input-group">
+                                            <input type="text" id="txtVisita" readonly="readonly" class="form-control" /><span class="input-group-btn">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalVisitas">
+                                                    <i class="fa fa-retweet"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <table class="table table-striped table-bordered table-hover dataTables-example" id="tblAnexos">
+                                        <thead>
+                                            <tr>
+                                                <th>UPM</th>
+                                                <th>Visita</th>
+                                                <th>Descripción</th>
+                                                <th>Tipo</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="tabs-container">
+                    <ul class="nav nav-tabs" id="tabAspectos"></ul>
+                    <div id="tabcontent" class="tab-content">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="ModalProyectos" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated flipInY">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Lista de Proyectos</h4>
+                    <small class="font-bold">Haga una selección</small>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table table-striped table-bordered table-hover dataTables-example" id="tblProyectos">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Descripción</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="ModalVisitas" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated flipInY">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Lista de Visitas</h4>
+                    <small class="font-bold">Haga una selección</small>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table table-striped table-bordered table-hover dataTables-example" id="tblVisitas">
+                                <thead>
+                                    <tr>
+                                        <th>Descripción</th>
+                                        <th>Ruta</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="ModalUPMs" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated flipInY">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Lista de UPM</h4>
+                    <small class="font-bold">Haga una selección</small>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table table-striped table-bordered table-hover dataTables-example" id="tblUPMs">
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Nombre</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="ModalInconformidad" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated flipInY">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">No Conformidad</h4>
+                    <small class="font-bold">Registro de no conformidad</small>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" id="txtVariableId" />
+                        <input type="hidden" id="txtAspectoId" />
+                        <input type="hidden" id="txtIdInconformidadAspectos" value="0" />
+                        <input type="hidden" id="txtRespuestaId" value="0" />
+                        <input type="hidden" id="txtLugarTrabajoId" value="0" />
+
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Aspecto:</label>
+                                <input id="txtAspectoSEL" type="text" class="form-control" readonly="readonly" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Pregunta:</label>
+                                <input id="txtPregunta" type="text" class="form-control" readonly="readonly" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Observación:</label>
+                                <input id="txtObservacion" type="text" class="form-control" required>
+                            </div>                            
+                        </div>
+                        <div class="col-lg-12">
+                            <table class="table table-striped table-bordered table-hover dataTables-example" id="tblNoConformidad">
+                                <thead>
+                                    <tr>
+                                        <th>No Conformidad</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/dataTables")
+}

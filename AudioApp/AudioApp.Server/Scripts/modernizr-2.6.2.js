@@ -1064,10 +1064,10 @@ window.Modernizr = (function( window, document, undefined ) {
             supportsUnknownElements = a.childNodes.length == 1 || (function() {
               // assign a false positive if unable to shiv
               (document.createElement)('a');
-              var frag = document.createDocumentFragment();
+              var frag = document.createDocumentFrAudioAppent();
               return (
                 typeof frag.cloneNode == 'undefined' ||
-                typeof frag.createDocumentFragment == 'undefined' ||
+                typeof frag.createDocumentFrAudioAppent == 'undefined' ||
                 typeof frag.createElement == 'undefined'
               );
             }());
@@ -1149,28 +1149,28 @@ window.Modernizr = (function( window, document, undefined ) {
             node = data.createElem(nodeName);
         }
 
-        // Avoid adding some elements to fragments in IE < 9 because
+        // Avoid adding some elements to frAudioAppents in IE < 9 because
         // * Attributes like `name` or `type` cannot be set/changed once an element
-        //   is inserted into a document/fragment
+        //   is inserted into a document/frAudioAppent
         // * Link elements with `src` attributes that are inaccessible, as with
         //   a 403 response, will cause the tab/window to crash
-        // * Script elements appended to fragments will execute when their `src`
+        // * Script elements appended to frAudioAppents will execute when their `src`
         //   or `text` property is set
         return node.canHaveChildren && !reSkip.test(nodeName) ? data.frag.appendChild(node) : node;
       }
 
       /**
-       * returns a shived DocumentFragment for the given document
+       * returns a shived DocumentFrAudioAppent for the given document
        * @memberOf html5
        * @param {Document} ownerDocument The context document.
-       * @returns {Object} The shived DocumentFragment.
+       * @returns {Object} The shived DocumentFrAudioAppent.
        */
-      function createDocumentFragment(ownerDocument, data){
+      function createDocumentFrAudioAppent(ownerDocument, data){
         if (!ownerDocument) {
             ownerDocument = document;
         }
         if(supportsUnknownElements){
-            return ownerDocument.createDocumentFragment();
+            return ownerDocument.createDocumentFrAudioAppent();
         }
         data = data || getExpandoData(ownerDocument);
         var clone = data.frag.cloneNode(),
@@ -1184,16 +1184,16 @@ window.Modernizr = (function( window, document, undefined ) {
       }
 
       /**
-       * Shivs the `createElement` and `createDocumentFragment` methods of the document.
+       * Shivs the `createElement` and `createDocumentFrAudioAppent` methods of the document.
        * @private
-       * @param {Document|DocumentFragment} ownerDocument The document.
+       * @param {Document|DocumentFrAudioAppent} ownerDocument The document.
        * @param {Object} data of the document.
        */
       function shivMethods(ownerDocument, data) {
         if (!data.cache) {
             data.cache = {};
             data.createElem = ownerDocument.createElement;
-            data.createFrag = ownerDocument.createDocumentFragment;
+            data.createFrag = ownerDocument.createDocumentFrAudioAppent;
             data.frag = data.createFrag();
         }
 
@@ -1206,7 +1206,7 @@ window.Modernizr = (function( window, document, undefined ) {
           return createElement(nodeName, ownerDocument, data);
         };
 
-        ownerDocument.createDocumentFragment = Function('h,f', 'return function(){' +
+        ownerDocument.createDocumentFrAudioAppent = Function('h,f', 'return function(){' +
           'var n=f.cloneNode(),c=n.createElement;' +
           'h.shivMethods&&(' +
             // unroll the `createElement` calls
@@ -1282,7 +1282,7 @@ window.Modernizr = (function( window, document, undefined ) {
         'supportsUnknownElements': supportsUnknownElements,
 
         /**
-         * A flag to indicate that the document's `createElement` and `createDocumentFragment`
+         * A flag to indicate that the document's `createElement` and `createDocumentFrAudioAppent`
          * methods should be overwritten.
          * @memberOf html5
          * @type Boolean
@@ -1302,8 +1302,8 @@ window.Modernizr = (function( window, document, undefined ) {
         //creates a shived element
         createElement: createElement,
 
-        //creates a shived documentFragment
-        createDocumentFragment: createDocumentFragment
+        //creates a shived documentFrAudioAppent
+        createDocumentFrAudioAppent: createDocumentFrAudioAppent
       };
 
       /*--------------------------------------------------------------------------*/

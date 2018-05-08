@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AGM.Entities;
+using AudioApp.Models;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -37,6 +41,22 @@ namespace AudioApp.Server.Controllers
             }
 
             return "no files";
+        }
+
+        [HttpPost]
+        public IHttpActionResult SetAnexosADO([FromBody]List<Anexo> list)
+        {
+            try
+            {
+                string strConexion = ConfigurationManager.ConnectionStrings["AudioAppContext"].ToString();
+                ADOAnexos objADO = new ADOAnexos(strConexion);
+                string strResult = objADO.SincronizacionAnexos(list);
+                return Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return Ok("Error: " + ex.Message);
+            }
         }
     }
 }

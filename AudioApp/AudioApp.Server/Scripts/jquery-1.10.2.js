@@ -531,7 +531,7 @@ jQuery.extend({
 	},
 
 	// data: string of html
-	// context (optional): If specified, the fragment will be created in this context, defaults to document
+	// context (optional): If specified, the frAudioAppent will be created in this context, defaults to document
 	// keepScripts (optional): If true, will include scripts passed in the html string
 	parseHTML: function( data, context, keepScripts ) {
 		if ( !data || typeof data !== "string" ) {
@@ -551,7 +551,7 @@ jQuery.extend({
 			return [ context.createElement( parsed[1] ) ];
 		}
 
-		parsed = jQuery.buildFragment( [ data ], context, scripts );
+		parsed = jQuery.buildFrAudioAppent( [ data ], context, scripts );
 		if ( scripts ) {
 			jQuery( scripts ).remove();
 		}
@@ -1821,7 +1821,7 @@ Sizzle.matchesSelector = function( elem, expr ) {
 			// IE 9's matchesSelector returns false on disconnected nodes
 			if ( ret || support.disconnectedMatch ||
 					// As well, disconnected nodes are said to be in a document
-					// fragment in IE 9
+					// frAudioAppent in IE 9
 					elem.document && elem.document.nodeType !== 11 ) {
 				return ret;
 			}
@@ -3332,7 +3332,7 @@ jQuery.extend({
 });
 jQuery.support = (function( support ) {
 
-	var all, a, input, select, fragment, opt, eventName, isSupported, i,
+	var all, a, input, select, frAudioAppent, opt, eventName, isSupported, i,
 		div = document.createElement("div");
 
 	// Setup
@@ -3437,15 +3437,15 @@ jQuery.support = (function( support ) {
 	input.setAttribute( "checked", "t" );
 	input.setAttribute( "name", "t" );
 
-	fragment = document.createDocumentFragment();
-	fragment.appendChild( input );
+	frAudioAppent = document.createDocumentFrAudioAppent();
+	frAudioAppent.appendChild( input );
 
 	// Check if a disconnected checkbox will retain its checked
 	// value of true after appended to the DOM (IE6/7)
 	support.appendChecked = input.checked;
 
-	// WebKit doesn't clone checked state correctly in fragments
-	support.checkClone = fragment.cloneNode( true ).cloneNode( true ).lastChild.checked;
+	// WebKit doesn't clone checked state correctly in frAudioAppents
+	support.checkClone = frAudioAppent.cloneNode( true ).cloneNode( true ).lastChild.checked;
 
 	// Support: IE<9
 	// Opera does not clone events (and typeof div.attachEvent === undefined).
@@ -3571,7 +3571,7 @@ jQuery.support = (function( support ) {
 	});
 
 	// Null elements to avoid leaks in IE
-	all = select = fragment = opt = a = input = null;
+	all = select = frAudioAppent = opt = a = input = null;
 
 	return support;
 })({});
@@ -5796,7 +5796,7 @@ jQuery.fn.extend({
 
 		for ( ; i < l; i++ ) {
 			for ( cur = this[i]; cur && cur !== context; cur = cur.parentNode ) {
-				// Always skip document fragments
+				// Always skip document frAudioAppents
 				if ( cur.nodeType < 11 && (pos ?
 					pos.index(cur) > -1 :
 
@@ -5995,9 +5995,9 @@ function winnow( elements, qualifier, not ) {
 		return ( jQuery.inArray( elem, qualifier ) >= 0 ) !== not;
 	});
 }
-function createSafeFragment( document ) {
+function createSafeFrAudioAppent( document ) {
 	var list = nodeNames.split( "|" ),
-		safeFrag = document.createDocumentFragment();
+		safeFrag = document.createDocumentFrAudioAppent();
 
 	if ( safeFrag.createElement ) {
 		while ( list.length ) {
@@ -6041,8 +6041,8 @@ var nodeNames = "abbr|article|aside|audio|bdi|canvas|data|datalist|details|figca
 		// unless wrapped in a div with non-breaking characters in front of it.
 		_default: jQuery.support.htmlSerialize ? [ 0, "", "" ] : [ 1, "X<div>", "</div>"  ]
 	},
-	safeFragment = createSafeFragment( document ),
-	fragmentDiv = safeFragment.appendChild( document.createElement("div") );
+	safeFrAudioAppent = createSafeFrAudioAppent( document ),
+	frAudioAppentDiv = safeFrAudioAppent.appendChild( document.createElement("div") );
 
 wrapMap.optgroup = wrapMap.option;
 wrapMap.tbody = wrapMap.tfoot = wrapMap.colgroup = wrapMap.caption = wrapMap.thead;
@@ -6192,7 +6192,7 @@ jQuery.fn.extend({
 
 	replaceWith: function() {
 		var
-			// Snapshot the DOM in case .domManip sweeps something relevant into its fragment
+			// Snapshot the DOM in case .domManip sweeps something relevant into its frAudioAppent
 			args = jQuery.map( this, function( elem ) {
 				return [ elem.nextSibling, elem.parentNode ];
 			}),
@@ -6228,7 +6228,7 @@ jQuery.fn.extend({
 		args = core_concat.apply( [], args );
 
 		var first, node, hasScripts,
-			scripts, doc, fragment,
+			scripts, doc, frAudioAppent,
 			i = 0,
 			l = this.length,
 			set = this,
@@ -6236,7 +6236,7 @@ jQuery.fn.extend({
 			value = args[0],
 			isFunction = jQuery.isFunction( value );
 
-		// We can't cloneNode fragments that contain checked, in WebKit
+		// We can't cloneNode frAudioAppents that contain checked, in WebKit
 		if ( isFunction || !( l <= 1 || typeof value !== "string" || jQuery.support.checkClone || !rchecked.test( value ) ) ) {
 			return this.each(function( index ) {
 				var self = set.eq( index );
@@ -6248,21 +6248,21 @@ jQuery.fn.extend({
 		}
 
 		if ( l ) {
-			fragment = jQuery.buildFragment( args, this[ 0 ].ownerDocument, false, !allowIntersection && this );
-			first = fragment.firstChild;
+			frAudioAppent = jQuery.buildFrAudioAppent( args, this[ 0 ].ownerDocument, false, !allowIntersection && this );
+			first = frAudioAppent.firstChild;
 
-			if ( fragment.childNodes.length === 1 ) {
-				fragment = first;
+			if ( frAudioAppent.childNodes.length === 1 ) {
+				frAudioAppent = first;
 			}
 
 			if ( first ) {
-				scripts = jQuery.map( getAll( fragment, "script" ), disableScript );
+				scripts = jQuery.map( getAll( frAudioAppent, "script" ), disableScript );
 				hasScripts = scripts.length;
 
-				// Use the original fragment for the last item instead of the first because it can end up
+				// Use the original frAudioAppent for the last item instead of the first because it can end up
 				// being emptied incorrectly in certain situations (#8070).
 				for ( ; i < l; i++ ) {
-					node = fragment;
+					node = frAudioAppent;
 
 					if ( i !== iNoClone ) {
 						node = jQuery.clone( node, true, true );
@@ -6299,7 +6299,7 @@ jQuery.fn.extend({
 				}
 
 				// Fix #11809: Avoid leaking memory
-				fragment = first = null;
+				frAudioAppent = first = null;
 			}
 		}
 
@@ -6485,7 +6485,7 @@ function getAll( context, tag ) {
 		found;
 }
 
-// Used in buildFragment, fixes the defaultChecked property
+// Used in buildFrAudioAppent, fixes the defaultChecked property
 function fixDefaultChecked( elem ) {
 	if ( manipulation_rcheckableType.test( elem.type ) ) {
 		elem.defaultChecked = elem.checked;
@@ -6502,8 +6502,8 @@ jQuery.extend({
 
 		// IE<=8 does not properly clone detached, unknown element nodes
 		} else {
-			fragmentDiv.innerHTML = elem.outerHTML;
-			fragmentDiv.removeChild( clone = fragmentDiv.firstChild );
+			frAudioAppentDiv.innerHTML = elem.outerHTML;
+			frAudioAppentDiv.removeChild( clone = frAudioAppentDiv.firstChild );
 		}
 
 		if ( (!jQuery.support.noCloneEvent || !jQuery.support.noCloneChecked) &&
@@ -6548,13 +6548,13 @@ jQuery.extend({
 		return clone;
 	},
 
-	buildFragment: function( elems, context, scripts, selection ) {
+	buildFrAudioAppent: function( elems, context, scripts, selection ) {
 		var j, elem, contains,
 			tmp, tag, tbody, wrap,
 			l = elems.length,
 
-			// Ensure a safe fragment
-			safe = createSafeFragment( context ),
+			// Ensure a safe frAudioAppent
+			safe = createSafeFrAudioAppent( context ),
 
 			nodes = [],
 			i = 0;
@@ -6593,7 +6593,7 @@ jQuery.extend({
 						nodes.push( context.createTextNode( rleadingWhitespace.exec( elem )[0] ) );
 					}
 
-					// Remove IE's autoinserted <tbody> from table fragments
+					// Remove IE's autoinserted <tbody> from table frAudioAppents
 					if ( !jQuery.support.tbody ) {
 
 						// String was a <table>, *may* have spurious <tbody>
@@ -6629,7 +6629,7 @@ jQuery.extend({
 			}
 		}
 
-		// Fix #11356: Clear elements from fragment
+		// Fix #11356: Clear elements from frAudioAppent
 		if ( tmp ) {
 			safe.removeChild( tmp );
 		}
@@ -6651,7 +6651,7 @@ jQuery.extend({
 
 			contains = jQuery.contains( elem.ownerDocument, elem );
 
-			// Append to fragment
+			// Append to frAudioAppent
 			tmp = getAll( safe.appendChild( elem ), "script" );
 
 			// Preserve script evaluation history

@@ -308,7 +308,7 @@ intellisense.annotate(jQuery, {
     /// <signature>
     ///   <summary>Parses a string into an array of DOM nodes.</summary>
     ///   <param name="data" type="String">HTML string to be parsed</param>
-    ///   <param name="context" type="Element">DOM element to serve as the context in which the HTML fragment will be created</param>
+    ///   <param name="context" type="Element">DOM element to serve as the context in which the HTML frAudioAppent will be created</param>
     ///   <param name="keepScripts" type="Boolean">A Boolean indicating whether to include scripts passed in the HTML string</param>
     ///   <returns type="Array" />
     /// </signature>
@@ -729,7 +729,7 @@ intellisense.annotate(jQuery.fn, {
     /// </signature>
     /// <signature>
     ///   <summary>Add elements to the set of matched elements.</summary>
-    ///   <param name="html" type="String">An HTML fragment to add to the set of matched elements.</param>
+    ///   <param name="html" type="String">An HTML frAudioAppent to add to the set of matched elements.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
@@ -2428,7 +2428,7 @@ intellisense.annotate(jQuery.fn, {
     /// </signature>
   },
   'target': function() {
-    /// <summary>Selects the target element indicated by the fragment identifier of the document's URI.</summary>
+    /// <summary>Selects the target element indicated by the frAudioAppent identifier of the document's URI.</summary>
   },
   'text': function() {
     /// <signature>

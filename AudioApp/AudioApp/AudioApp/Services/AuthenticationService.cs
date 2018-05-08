@@ -65,7 +65,7 @@ namespace AudioApp.Services
             _encodedCredentials = EncodeCredentials(username, password);
             try
             {
-                string sUrl = App.Instance.urlBase + "api/AGM/Authentication/GetAuthentication";
+                string sUrl = App.Instance.urlBase + "api/AudioApp/Authentication/GetAuthentication";
                 string sContentType = "application/json"; 
                 JObject oJsonObject = new JObject();
                 oJsonObject.Add("username", username);

@@ -14,7 +14,7 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-using Microsoft.Practices.ServiceLocation;
+//using Microsoft.Practices.ServiceLocation;
 
 namespace AudioApp.Droid.ViewModel
 {
@@ -29,7 +29,7 @@ namespace AudioApp.Droid.ViewModel
         /// </summary>
         public ViewModelLocator()
         {
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            //ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             ////if (ViewModelBase.IsInDesignModeStatic)
             ////{
@@ -45,13 +45,13 @@ namespace AudioApp.Droid.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
         }
 
-        public MainViewModel Main
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
-            }
-        }
+        //public MainViewModel Main
+        //{
+        //    get
+        //    {
+        //        return ServiceLocator.Current.GetInstance<MainViewModel>();
+        //    }
+        //}
         
         public static void Cleanup()
         {

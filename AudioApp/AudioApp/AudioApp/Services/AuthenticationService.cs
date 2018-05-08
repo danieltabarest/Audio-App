@@ -32,23 +32,10 @@ namespace AudioApp.Services
             };
             _serializerSettings.Converters.Add(new StringEnumConverter());
 
-            //_UsuariosRepository = App.Instance._UsuariosRepository;
-            //_RolesRepository = App.Instance._RolesRepository;
-            //_PerfilesRepository = App.Instance._PerfilesRepository;
-            //_PersonasRepository = App.Instance._PersonasRepository;
-            //_AsignacionRolesRepository = App.Instance._AsignacionRolesRepository;
-            //_AsignacionProfesionalesRepository = App.Instance._AsignacionProfesionalesRepository;
-            //_ProfesionalesRepository = App.Instance._ProfesionalesRepository;
-            //_ProyectosRepository = App.Instance._ProyectosRepository;
         }
 
-
-        //public string Username { get { return _userAccountRepository.Retrieve()?.Username ?? string.Empty; } set { _username = value; } }
-        //public string Company { get { return _userAccountRepository.Retrieve()?.Company ?? string.Empty; } set { _company = value; } }
-        
         public TokenResponse tokenResponse { get; set; }
 
-        //public string SavedUsername => _userAccountRepository.Retrieve()?.Username ?? string.Empty;
 
         public async Task<TokenResponse> GetToken(string urlBase, string username, string password)
         {
@@ -115,65 +102,7 @@ namespace AudioApp.Services
         
             try
             {
-                /*var users = await _UsuariosRepository.RetrieveList();
-                var user = users.Where(x => x.UserName == username && x.Password == password && x.EstadoId == activo).FirstOrDefault();
-               
-                if (user != null)
-                {
-                    var asignacionRoles = await _AsignacionRolesRepository.RetrieveList();
-                    asignacionRoles = asignacionRoles.Where(x => x.UsuarioId == user.UsuarioId).ToList();
-                    var roles = await  _RolesRepository.RetrieveList();
-                    user.Roles = asignacionRoles.Join(roles, ARol => ARol.RolId, Rol => Rol.RolId, (ARol, Rol) => Rol).ToList();
-                    if (user.Roles != null)
-                    {
-                        if (user.Roles.Count > 0)
-                        {
-                            if (user.ProfesionalId.HasValue)
-                            {
-                                var profesionales = await _ProfesionalesRepository.RetrieveList();
-                                user.Profesional = profesionales.Where(x => x.ProfesionalId == user.ProfesionalId.Value).FirstOrDefault();
-
-                                var personas = await _PersonasRepository.RetrieveList();
-                                user.Profesional.Persona = personas.Where(x => x.PersonaId == user.Profesional.PersonaId).FirstOrDefault();
-                                var perfiles = await _PerfilesRepository.RetrieveList();
-                                user.Profesional.Perfil = perfiles.Where(x => x.PerfilId == user.Profesional.PerfilId).FirstOrDefault();
-                                var asignacionProyectos = await _AsignacionProfesionalesRepository.RetrieveList();
-                                var asignaciones = asignacionProyectos.Where(x => x.ProfesionalId == user.Profesional.ProfesionalId).ToList();                  
-                                var proyectos = await _ProyectosRepository.RetrieveList();
-                                user.Proyectos = proyectos.Join(asignaciones,(p)=>p.ProyectoId,(a)=>a.ProyectoId,(p,a)=>p).ToList();
-                                user.ProyectoActivo = user.Proyectos.FirstOrDefault();
-                                CountProyectos = asignacionProyectos.Count();
-                            }
-
-                            if (CountProyectos > 0)
-                            {
-                                App.User = user;
-                                success = 1;
-                            }
-                            else
-                            {
-                                success = 2;
-                            }
-                        }
-                        else
-                        {
-                            //sin roles el usuario
-                            success = 3;
-                        }
-                    }
-                    else
-                    {
-                        //sin roles el usuario
-                        success = 3;
-                    }
-
-
-                }
-                else
-                {
-                    success = 0;
-                }*/
-                
+              
                     
           
             }

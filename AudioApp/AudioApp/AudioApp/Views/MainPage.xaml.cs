@@ -7,7 +7,7 @@ using Xamarin.Forms;
 using Plugin.AudioRecorder;
 using AudioApp.Forms;
 
-namespace AudioApp
+namespace AudioApp.Views
 {
     public partial class MainPage : ContentPage
     {

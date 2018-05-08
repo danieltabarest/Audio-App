@@ -9,7 +9,7 @@ using AudioApp.ViewModels;
 using System.ComponentModel;
 using AudioApp.Models;
 using AudioApp.Services;
-using AudioApp.Views;
+//using AudioApp.Views;
 using Plugin.Connectivity;
 
 namespace AudioApp.ViewModels
@@ -20,18 +20,13 @@ namespace AudioApp.ViewModels
         private User currentUser;
         private ApiService apiService;
         private DialogService dialogService;
-        private NavigationService navigationService;
         private bool isRefreshing = false;
         
         #endregion
 
         #region Properties
-        public LoginViewModel Login { get; set; }
 
-        //public SynchronizationViewModel SynchronizationViewModel { get;  set; }
-        //public CampaignViewModel CampaignViewModel { get;  set; }
         public AuthenticationService AuthenticationService { get; set; }
-        //public ObservableCollection<MenuItemViewModel> Menu { get; set; }
         
 
         public User CurrentUser
@@ -93,23 +88,6 @@ namespace AudioApp.ViewModels
 
         #region Methods
 
-        private async void RefreshPoints()
-        {
-            if (!CrossConnectivity.Current.IsConnected)
-            {
-                return;
-            }
-
-            var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
-            if (!isReachable)
-            {
-                return;
-            }
-
-            isRefreshing = true;
- 
-
-        }
 
 
         #endregion

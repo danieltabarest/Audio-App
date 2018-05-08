@@ -1,0 +1,11 @@
+﻿div.arrow {
+    cursor: pointer;
+    background: transparent url('../Images/arrows.png') no-repeat scroll 0px -16px;
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+
+div.up {
+    background-position: 0px 0px;
+}

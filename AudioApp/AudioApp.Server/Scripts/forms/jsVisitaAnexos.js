@@ -12,12 +12,12 @@ var dataingrVisitas;
 var dataAnexos;
 
 $(document).ready(function () {
-    ConfigTableIncProyectos();
-    ConfigTableIncUPMs();
-    ConfigTableVisitas();
-    ConfigTableNoConformidad();
+    //ConfigTableIncProyectos();
+    //ConfigTableIncUPMs();
+    //ConfigTableVisitas();
+    //ConfigTableNoConformidad();
     ConfigTableAnexos();
-    GetProyectos();
+    //GetProyectos();
     GetURL();
 
 });

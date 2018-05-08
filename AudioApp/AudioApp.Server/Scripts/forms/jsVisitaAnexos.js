@@ -17,6 +17,7 @@ $(document).ready(function () {
     //ConfigTableVisitas();
     //ConfigTableNoConformidad();
     ConfigTableAnexos();
+    GetAnexos();
     //GetProyectos();
     GetURL();
 

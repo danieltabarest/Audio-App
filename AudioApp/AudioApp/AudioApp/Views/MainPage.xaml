@@ -4,53 +4,53 @@
              xmlns:local="clr-namespace:AudioApp"
              x:Class="AudioApp.MainPage"
              BackgroundColor="White">
+    <ScrollView Orientation="Vertical">
 
-    <StackLayout Orientation="Vertical">
-        <ScrollView Orientation="Vertical">
-        <Label Text="Upload File to Server"
+        <StackLayout Orientation="Vertical">
+            <Label Text="Upload File to Server"
            HorizontalOptions="Center"
            TextColor="Black"
            FontSize="36"/>
 
-        <Button Text="Pick Photo"
+            <Button Text="Pick Photo"
             BackgroundColor="Teal"
             TextColor="White"
             FontSize="40"
             Clicked="PickPhoto_Clicked"/>
 
-        <Button Text="Take Photo"
+            <Button Text="Take Photo"
             BackgroundColor="Navy"
             TextColor="White"
             FontSize="40"
             Clicked="TakePhoto_Clicked"/>
 
-        <Image x:Name="FileImage"
+            <Image x:Name="FileImage"
            WidthRequest="400"
            HeightRequest="220"/>
 
-        <Label x:Name="LocalPathLabel"
+            <Label x:Name="LocalPathLabel"
            TextColor="Black"
            FontSize="18"/>
 
-        <Button Text="Upload Photo"
+            <Button Text="Upload Photo"
             BackgroundColor="Purple"
             TextColor="White"
             FontSize="40"
             Clicked="UploadFile_Clicked"/>
 
-        <Label x:Name="RemotePathLabel"
+            <Label x:Name="RemotePathLabel"
            FontSize="20"
            TextColor="Black"/>
 
-        <StackLayout Padding="20,80,20,0" Orientation="Vertical" Spacing="15">
-            <StackLayout Orientation="Horizontal">
-                <Switch x:Name="TimeoutSwitch" IsToggled="True" />
-                <Label Text="Timeout after silence?" />
+            <StackLayout Padding="20,80,20,0" Orientation="Vertical" Spacing="15">
+                <StackLayout Orientation="Horizontal">
+                    <Switch x:Name="TimeoutSwitch" IsToggled="True" />
+                    <Label Text="Timeout after silence?" />
+                </StackLayout>
+                <Button x:Name="RecordButton" Text="Record" FontSize="24" HorizontalOptions="FillAndExpand" Clicked="Record_Clicked" />
+                <Button x:Name="PlayButton" Text="Play" FontSize="24" HorizontalOptions="FillAndExpand" Clicked="Play_Clicked" IsEnabled="False" />
             </StackLayout>
-            <Button x:Name="RecordButton" Text="Record" FontSize="24" HorizontalOptions="FillAndExpand" Clicked="Record_Clicked" />
-            <Button x:Name="PlayButton" Text="Play" FontSize="24" HorizontalOptions="FillAndExpand" Clicked="Play_Clicked" IsEnabled="False" />
-        </StackLayout>
-        </ScrollView>
-    </StackLayout>
 
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

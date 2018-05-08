@@ -6,7 +6,7 @@
              BackgroundColor="White">
 
     <StackLayout Orientation="Vertical">
-
+        <ScrollView Orientation="Vertical">
         <Label Text="Upload File to Server"
            HorizontalOptions="Center"
            TextColor="Black"
@@ -50,7 +50,7 @@
             <Button x:Name="RecordButton" Text="Record" FontSize="24" HorizontalOptions="FillAndExpand" Clicked="Record_Clicked" />
             <Button x:Name="PlayButton" Text="Play" FontSize="24" HorizontalOptions="FillAndExpand" Clicked="Play_Clicked" IsEnabled="False" />
         </StackLayout>
-
+        </ScrollView>
     </StackLayout>
 
 </ContentPage>

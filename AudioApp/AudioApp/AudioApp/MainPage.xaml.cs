@@ -30,7 +30,7 @@ namespace AudioApp
             };
 
             //player = new AudioPlayer();
-            var player = DependencyService.Get<IAudioPlayer>();
+            player = DependencyService.Get<IAudioPlayer>();
             player.FinishedPlaying += Player_FinishedPlaying;
         }
 

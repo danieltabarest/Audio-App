@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="com.dev.AudioApp" android:versionCode="1">
-	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="24" />
+	<uses-sdk android:minSdkVersion="15" />
 	<application android:label="AudioApp" android:icon="@drawable/icon"></application>
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />

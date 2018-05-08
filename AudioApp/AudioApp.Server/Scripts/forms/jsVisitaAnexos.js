@@ -469,8 +469,8 @@ function GetAnexos() {
     var iUrl = "";
 
     var params = new Object();
-    params.UPMId = $("#txtUPMId").val();
-    params.VisitaId = $("#txtVisitaId").val();
+    params.UPMId = 1;
+    params.VisitaId = 1;
     params = JSON.stringify(params);
 
     $.ajax({

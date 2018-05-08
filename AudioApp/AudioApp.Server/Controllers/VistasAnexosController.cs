@@ -31,7 +31,7 @@ namespace AudioApp.Server.Controllers
         }
 
         public JsonResult GetAnexos(int UPMId, int VisitaId)
-        {
+      {
             AudioAppContext db = new AudioAppContext();
 
             try

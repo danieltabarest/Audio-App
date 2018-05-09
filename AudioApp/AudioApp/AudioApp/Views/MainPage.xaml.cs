@@ -73,6 +73,12 @@ namespace AudioApp.Views
 
                     RecordButton.IsEnabled = true;
                 }
+                var filePath = recorder.GetAudioFilePath();
+
+                if (filePath != null)
+                {
+                    InsertAttachDB(filePath, filePath);
+                }
             }
             catch (Exception ex)
             {
@@ -177,7 +183,7 @@ namespace AudioApp.Views
             var httpClient = new HttpClient();
 
             var uploadServiceBaseAddress = "http://localhost:12214/api/Files/Upload";
-                //"http://AudioApp.azurewebsites.net/api/Files/Upload";
+            //"http://AudioApp.azurewebsites.net/api/Files/Upload";
             //"http://localhost:12214/api/Files/Upload";
 
             var httpResponseMessage = await httpClient.PostAsync(uploadServiceBaseAddress, content);
@@ -195,32 +201,32 @@ namespace AudioApp.Views
                 var _anexo = new Anexo();
                 string _Image;
                 Guid id = Guid.NewGuid();
-                var typefile = Path.Substring(Path.Length - 4);
-                if (!typefile.Contains("jpg") && !typefile.Contains("png") && !typefile.Contains("mp4"))
-                    typefile = ".jpg";
-                if (typefile.Contains("mp4"))
-                { _Image = "VideoIcon.png"; }
-                else
-                {
-                    _Image = Path;
-                }
-                _anexo.AnexoId = 1; 
+                //var typefile = Path.Substring(Path.Length - 4);
+                //if (!typefile.Contains("jpg") && !typefile.Contains("png") && !typefile.Contains("mp4"))
+                //    typefile = ".jpg";
+                //if (typefile.Contains("mp4"))
+                //{ _Image = "VideoIcon.png"; }
+                //else
+                //{
+                //    _Image = Path;
+                //}
+                _anexo.AnexoId = Items.Count + 1;
                 _anexo.UPMId = 1;
                 _anexo.ID = id.ToString();
-                _anexo.Tipo = typefile;
+                _anexo.Tipo = Path;
                 _anexo.VisitaId = 1;
                 _anexo.Path = Path;
-                _anexo.Image = _Image;
-                _anexo.URL = String.Format("{0}{1}", id.ToString(), typefile);
+                //_anexo.Image = _Image;
+                _anexo.URL = Path;
                 _anexo.Descripcion = description;
                 _anexo.LugarTrabajoId = 1;
                 _anexo.CodNivel = "1";
                 _anexo.EstadoId = 1;
                 _anexo.FechaCreacion = DateTime.Now;
-                _anexo.UsuarioCreacion = App.User.UsuarioCreacion;
+                _anexo.UsuarioCreacion = "test";
                 _anexo.UsuarioModificacion = App.User.UsuarioModificacion;
                 _anexo.FechaModificacion = App.User.FechaModificacion;
-                 Items.Add(_anexo);
+                Items.Add(_anexo);
             }
             catch (Exception ex)
             {

@@ -24,6 +24,35 @@
                 </StackLayout>
                 <Button x:Name="RecordButton" Text="Record" FontSize="24" HorizontalOptions="FillAndExpand" Clicked="Record_Clicked" />
                 <Button x:Name="PlayButton" Text="Play" FontSize="24" HorizontalOptions="FillAndExpand" Clicked="Play_Clicked" IsEnabled="False" />
+
+                <ListView 
+                x:Name="List"
+                ItemsSource="{Binding Items}" 
+                BackgroundColor="#f5f5f5" 
+                HasUnevenRows="true"
+                SeparatorVisibility="None"
+                HorizontalOptions="FillAndExpand" 
+                VerticalOptions="FillAndExpand"
+                IsPullToRefreshEnabled="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Margin="15,15,15,0" Orientation="Vertical"  VerticalOptions="FillAndExpand" x:Name="ContentStack">
+                                    <StackLayout  Orientation="Vertical"  VerticalOptions="FillAndExpand" >
+                                        <StackLayout  Orientation="Vertical" Padding="10" >
+                                            <Label  Text="{Binding AnexoId}" VerticalTextAlignment="Center" />
+                                            <Label  Text="{Binding FechaCreacion}" VerticalTextAlignment="Center" />
+                                            <Label  Text="{Binding Path}" VerticalTextAlignment="Center" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Footer>
+                        <Label></Label>
+                    </ListView.Footer>
+                </ListView>
             </StackLayout>
 
             <Button Text="Pick Photo"
@@ -51,6 +80,8 @@
             <Label x:Name="RemotePathLabel"
            FontSize="20"
            TextColor="Black"/>
+
+
 
 
         </StackLayout>

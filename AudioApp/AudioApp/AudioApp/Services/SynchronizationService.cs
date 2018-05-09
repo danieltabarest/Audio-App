@@ -61,7 +61,7 @@ namespace AudioApp.Services
                 {
 
                     //Send entities
-                    res = await apiService.Post<Anexo>("/api/AGM/", "Sincronizacion/SetAnexosADO", authenticationService.tokenResponse.TokenType, authenticationService.tokenResponse.AccessToken, resultuploadAnexo);
+                    res = await apiService.Post<Anexo>("/api/", "Uploads", authenticationService.tokenResponse.TokenType, authenticationService.tokenResponse.AccessToken, resultuploadAnexo);
                     List<Anexo> _list = (List<Anexo>)res.Result;
                     if (_list.Count > 0)
                     {

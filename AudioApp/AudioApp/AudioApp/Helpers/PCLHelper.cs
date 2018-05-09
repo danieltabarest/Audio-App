@@ -1,0 +1,158 @@
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json.Converters;
+using PCLStorage;
+using System.Threading;
+using System.IO;
+
+namespace AudioApp.Services
+{
+    public static class PCLHelper
+    {
+
+        public async static Task<bool> IsFileExistAsync(this string fileName, IFolder rootFolder = null)
+        {
+            // get hold of the file system
+            IFolder folder = rootFolder ?? FileSystem.Current.LocalStorage;
+            ExistenceCheckResult folderexist = await folder.CheckExistsAsync(fileName);
+            // already run at least once, don't overwrite what's there
+            if (folderexist == ExistenceCheckResult.FileExists)
+            {
+                return true;
+
+            }
+            return false;
+        }
+
+        public async static Task<bool> IsFolderExistAsync(this string folderName, IFolder rootFolder = null)
+        {
+            // get hold of the file system
+            IFolder folder = rootFolder ?? FileSystem.Current.LocalStorage;
+            ExistenceCheckResult folderexist = await folder.CheckExistsAsync(folderName);
+            // already run at least once, don't overwrite what's there
+            if (folderexist == ExistenceCheckResult.FolderExists)
+            {
+                return true;
+
+            }
+            return false;
+        }
+
+        public async static Task<IFolder> CreateFolder(this string folderName, IFolder rootFolder = null)
+        {
+            IFolder folder = rootFolder ?? FileSystem.Current.LocalStorage;
+            folder = await folder.CreateFolderAsync(folderName, CreationCollisionOption.ReplaceExisting).ConfigureAwait(false);
+            return folder;
+        }
+
+        public async static Task<IFile> CreateFile(this string filename, IFolder rootFolder = null)
+        {
+            IFolder folder = rootFolder ?? FileSystem.Current.LocalStorage;
+            IFile file = await folder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting).ConfigureAwait(false);
+            return file;
+        }
+       /* public async static Task<bool> WriteTextAllAsync(this string filename, string content = "", IFolder rootFolder = null)
+        {
+            //IFile file = await filename.CreateFile(rootFolder);
+            //await file.OpenAsync(FileAccess.ReadAndWrite);
+            //await file.WriteAllTextAsync(content).ConfigureAwait(false); 
+            IFolder folder = rootFolder ?? FileSystem.Current.LocalStorage;
+            Java.IO.File file = new Java.IO.File(folder.Path, filename);
+            if (!file.Exists())
+            {
+                file.CreateNewFile();
+                file.Mkdir();
+                Java.IO.FileWriter writer = new Java.IO.FileWriter(file);
+                // Writes the content to the file
+                await writer.WriteAsync(content);
+                writer.Flush();
+                writer.Close();
+            }
+
+            return true;
+
+
+        }*/
+
+        public async static Task<string> ReadAllTextAsync(this string fileName, IFolder rootFolder = null)
+        {
+            string content = "";
+            IFolder folder = rootFolder ?? FileSystem.Current.LocalStorage;
+            bool exist = await fileName.IsFileExistAsync(folder);
+            if (exist == true)
+            {
+                IFile file = await folder.GetFileAsync(fileName);
+                content = await file.ReadAllTextAsync();
+            }
+            return content;
+        }
+        public async static Task<bool> DeleteFile(this string fileName, IFolder rootFolder = null)
+        {
+            IFolder folder = rootFolder ?? FileSystem.Current.LocalStorage;
+            bool exist = await fileName.IsFileExistAsync(folder);
+            if (exist == true)
+            {
+                IFile file = await folder.GetFileAsync(fileName);
+                await file.DeleteAsync();
+                return true;
+            }
+            return false;
+        }
+        public async static Task SaveImage(this byte[] image, String fileName, IFolder rootFolder = null)
+        {
+            // get hold of the file system
+            IFolder folder = rootFolder ?? FileSystem.Current.LocalStorage;
+
+            // create a file, overwriting any existing file
+            IFile file = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+
+            // populate the file with image data
+            using (System.IO.Stream stream = await file.OpenAsync(FileAccess.ReadAndWrite))
+            {
+                stream.Write(image, 0, image.Length);
+            }
+        }
+
+        public async static Task<byte[]> LoadImage(this byte[] image, String fileName, IFolder rootFolder = null)
+        {
+            // get hold of the file system
+            IFolder folder = rootFolder ?? FileSystem.Current.LocalStorage;
+
+            //open file if exists
+            IFile file = await folder.GetFileAsync(fileName);
+            //load stream to buffer
+            using (System.IO.Stream stream = await file.OpenAsync(FileAccess.ReadAndWrite))
+            {
+                long length = stream.Length;
+                byte[] streamBuffer = new byte[length];
+                stream.Read(streamBuffer, 0, (int)length);
+                return streamBuffer;
+            }
+
+        }
+
+        public async static Task<byte[]> LoadImage(String fileName, IFolder rootFolder = null)
+        {
+            // get hold of the file system
+            IFolder folder = rootFolder ?? FileSystem.Current.LocalStorage;
+
+            //open file if exists
+            IFile file = await folder.GetFileAsync(fileName);
+            //load stream to buffer
+            using (System.IO.Stream stream = await file.OpenAsync(FileAccess.ReadAndWrite))
+            {
+                long length = stream.Length;
+                byte[] streamBuffer = new byte[length];
+                stream.Read(streamBuffer, 0, (int)length);
+                return streamBuffer;
+            }
+
+        }
+    }
+}

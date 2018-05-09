@@ -21,6 +21,67 @@ namespace AudioApp.Services
             this.urlBase = App.Instance.urlBase;
         }
 
+        public async Task<Response> PostAttachAsync<T>(string servicePrefix, string controller, string tokenType, string accessToken, object data, Anexo anexo)
+        {
+            try
+            {
+                var url = string.Format("{0}{1}{2}", urlBase, servicePrefix, controller);
+                JsonSerializerSettings _serializerSettings = new JsonSerializerSettings
+                {
+                    ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                    DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+                    NullValueHandling = NullValueHandling.Ignore
+                };
+                _serializerSettings.Converters.Add(new StringEnumConverter());
+                //read file into upfilebytes array
+                var upfilebytes = (byte[])data;/*File.ReadAllBytes(file)*/;
+
+                //create new HttpClient and MultipartFormDataContent and add our file, and StudentId
+                //HttpClient client = new HttpClient();
+                var httpClient = CreateHttpClientPostAttach(url, tokenType, accessToken);
+
+
+                MultipartFormDataContent content = new MultipartFormDataContent();
+                ByteArrayContent baContent = new ByteArrayContent(upfilebytes);
+                StringContent descriptioncontent = new StringContent("1");
+                content.Add(baContent, "UploadedImage", String.Format("{0}{1}", anexo.ID, anexo.Tipo));
+                content.Add(descriptioncontent, anexo.Descripcion);
+
+                //upload MultipartFormDataContent content async and store response in response var
+                var response = await httpClient.PostAsync(url, content);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = response.StatusCode.ToString(),
+                    };
+                }
+
+                //read response result as a string async into json var
+                var responsestr = response.Content.ReadAsStringAsync().Result;
+
+                var result = JsonConvert.DeserializeObject<string>(responsestr, _serializerSettings);
+                return new Response
+                {
+                    IsSuccess = true,
+                    Message = "Ok",
+                    //Result = list,
+                };
+
+                //return result;
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                };
+            }
+
+        }
 
 
         private HttpClient CreateHttpClientPostAttach(string _baseUri, string tokenType, string accessToken)

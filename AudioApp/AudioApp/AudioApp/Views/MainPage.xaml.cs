@@ -23,7 +23,7 @@ namespace AudioApp.Views
         public MainPage()
         {
             InitializeComponent();
-
+            this.BindingContext = this;
             recorder = new AudioRecorderService
             {
                 StopRecordingAfterTimeout = true,
@@ -72,18 +72,20 @@ namespace AudioApp.Views
                     await recorder.StopRecording();
 
                     RecordButton.IsEnabled = true;
-                }
-                var filePath = recorder.GetAudioFilePath();
 
-                if (filePath != null)
-                {
-                    InsertAttachDB(filePath, filePath);
+                    var filePath = recorder.GetAudioFilePath();
+
+                    if (filePath != null)
+                    {
+                        InsertAttachDB(filePath, filePath);
+                    }
                 }
+                
             }
             catch (Exception ex)
             {
                 //blow up the app!
-                throw ex;
+               // throw ex;
             }
         }
 
@@ -111,7 +113,7 @@ namespace AudioApp.Views
             catch (Exception ex)
             {
                 //blow up the app!
-                throw ex;
+               // throw ex;
             }
         }
 
@@ -191,7 +193,7 @@ namespace AudioApp.Views
             RemotePathLabel.Text = await httpResponseMessage.Content.ReadAsStringAsync();
         }
 
-        public ObservableRangeCollection<Anexo> Items { get; set; }
+        public ObservableRangeCollection<Anexo> Items { get; set; } = new ObservableRangeCollection<Anexo>();
 
 
         public async Task InsertAttachDB(string Path, string description)
@@ -201,22 +203,12 @@ namespace AudioApp.Views
                 var _anexo = new Anexo();
                 string _Image;
                 Guid id = Guid.NewGuid();
-                //var typefile = Path.Substring(Path.Length - 4);
-                //if (!typefile.Contains("jpg") && !typefile.Contains("png") && !typefile.Contains("mp4"))
-                //    typefile = ".jpg";
-                //if (typefile.Contains("mp4"))
-                //{ _Image = "VideoIcon.png"; }
-                //else
-                //{
-                //    _Image = Path;
-                //}
                 _anexo.AnexoId = Items.Count + 1;
                 _anexo.UPMId = 1;
                 _anexo.ID = id.ToString();
                 _anexo.Tipo = Path;
                 _anexo.VisitaId = 1;
                 _anexo.Path = Path;
-                //_anexo.Image = _Image;
                 _anexo.URL = Path;
                 _anexo.Descripcion = description;
                 _anexo.LugarTrabajoId = 1;
@@ -224,8 +216,7 @@ namespace AudioApp.Views
                 _anexo.EstadoId = 1;
                 _anexo.FechaCreacion = DateTime.Now;
                 _anexo.UsuarioCreacion = "test";
-                _anexo.UsuarioModificacion = App.User.UsuarioModificacion;
-                _anexo.FechaModificacion = App.User.FechaModificacion;
+                _anexo.FechaModificacion = DateTime.Now; ;
                 Items.Add(_anexo);
             }
             catch (Exception ex)

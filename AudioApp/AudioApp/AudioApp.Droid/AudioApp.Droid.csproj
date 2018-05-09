@@ -210,7 +210,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\FileHelper.cs" />
     <Compile Include="Service\ImageHelpers.cs" />
-    <Compile Include="Service\MediaService.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
   </ItemGroup>

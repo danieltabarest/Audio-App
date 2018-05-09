@@ -43,7 +43,7 @@ namespace AudioApp.Models
 
         public SqlTransaction StartTransaction(SqlConnection CnConTrans)
         {
-            if(CnConTrans.State == ConnectionState.Executing)
+            if (CnConTrans.State == ConnectionState.Executing)
             {
                 CnConTrans.Close();
             }
@@ -58,27 +58,7 @@ namespace AudioApp.Models
             {
                 StrNameSP = "UspSetAnexos";
 
-                //var IDLugaresTrabajo = list.Where(x => x.Visita.LugaresTrabajo[0].LugarTrabajoId = item.LugarTrabajoId);
-                var VisitaLugarTrabajo = item.Visita.LugaresTrabajo.Where(x => x.LugarTrabajoId == item.LugarTrabajoId).FirstOrDefault();
-                if (VisitaLugarTrabajo != null)
-                {
-                    oParam = new object[] {item.ID,
-                                          item.URL,
-                                          item.CodNivel,
-                                          item.VisitaId,
-                                          item.UPMId,
-                                          VisitaLugarTrabajo.ID,
-                                          item.Descripcion,
-                                          item.Tipo,
-                                          item.UsuarioCreacion,
-                                          item.UsuarioModificacion,
-                                          item.FechaModificacion,
-                                          item.EstadoId,
-                                         item.Visita.ID};
-                }
-                else
-                {
-                    oParam = new object[] {item.ID,
+                oParam = new object[] {item.ID,
                                           item.URL,
                                           item.CodNivel,
                                           item.VisitaId,
@@ -90,9 +70,8 @@ namespace AudioApp.Models
                                           item.UsuarioModificacion,
                                           item.FechaModificacion,
                                           item.EstadoId,
-                                         item.Visita.ID};
-                }
-                
+                                         new Guid(),};
+
                 sResult = ObjConection.ExecuteNonQuery(ref StrNameSP, oParam, DbConection, TrTransaction);
                 if (sResult != "success")
                 {

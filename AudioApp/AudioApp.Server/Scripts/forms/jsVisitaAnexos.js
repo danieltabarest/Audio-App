@@ -269,7 +269,7 @@ function GetUPMsProyecto() {
 
         $.ajax({
             type: "POST",
-            url: "/VistasAnexos/GetUPMsporProyectos",
+            url: "/Anexos/GetUPMsporProyectos",
             data: params,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -311,7 +311,7 @@ function GetAspectos() {
 
     $.ajax({
         type: "POST",
-        url: "/VistasAnexos/GetAspectos",
+        url: "/Anexos/GetAspectos",
         data: params,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -424,7 +424,7 @@ function GetVisitas() {
 
         $.ajax({
             type: "POST",
-            url: "/VistasAnexos/GetVisita",
+            url: "/Anexos/GetVisita",
             data: params,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -475,7 +475,7 @@ function GetAnexos() {
 
     $.ajax({
         type: "POST",
-        url: "/VistasAnexos/GetAnexos",
+        url: "/Anexos/GetAnexos",
         data: params,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -544,7 +544,7 @@ function GetComponentesVariables() {
 
     $.ajax({
         type: "POST",
-        url: "/VistasAnexos/GetComponentesVariables",
+        url: "/Anexos/GetComponentesVariables",
         data: params,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -685,7 +685,7 @@ function GetInconformidad() {
 
     $.ajax({
         type: "POST",
-        url: "/VistasAnexos/GetInconformidad",
+        url: "/Anexos/GetInconformidad",
         data: iInconformidad,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -737,7 +737,7 @@ function DelInconformidad(IdInconAspectos) {
 
     $.ajax({
         type: "POST",
-        url: "/VistasAnexos/DelInconformidad",
+        url: "/Anexos/DelInconformidad",
         data: VisitasId,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -778,7 +778,7 @@ function ActEstado(variableId) {
 
         $.ajax({
             type: "POST",
-            url: "/VistasAnexos/UpdInconformidad",
+            url: "/Anexos/UpdInconformidad",
             data: IdVariable,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -807,7 +807,7 @@ function GetURL() {
 
     $.ajax({
         type: "POST",
-        url: "/VistasAnexos/GetUrl",
+        url: "/Anexos/GetUrl",
         data: {},
         contentType: "application/json; charset=utf-8",
         dataType: "json",

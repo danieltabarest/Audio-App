@@ -10,17 +10,17 @@ using System.Web.Mvc;
 
 namespace AudioApp.Server.Controllers
 {
-    public class VistasAnexosController : BaseController
+    public class AnexosController : BaseController
     {
         private AudioAppContext oContext;
 
-        public VistasAnexosController()
+        public AnexosController()
         {
             oContext = new AudioAppContext();
         }
 
-        // GET: VistasAnexos
-        public ActionResult IndexVistasAnexos()
+        // GET: Anexos
+        public ActionResult IndexAnexos()
         {
             if (!this.IsSessionValida())
             {
@@ -37,17 +37,11 @@ namespace AudioApp.Server.Controllers
             try
             {
 
-                //string Rol = Convert.ToString(System.Web.HttpContext.Current.Session["Rol"]);
-
                 var liAnexos = from a in db.Anexos
-                               join u in db.UPMs on a.UPMId equals u.UPMId
-                               join v in db.Visitas on a.VisitaId equals v.VisitaId
-                               where (a.UPMId == UPMId && a.EstadoId == 7)
-                               //where (a.UPMId == UPMId && a.VisitaId == VisitaId && a.EstadoId == 7)
                                select new
                                {
-                                   UPMs = u.Nombre,
-                                   Visita = v.Codigo,
+                                   UPMs = a.ID,
+                                   Visita = a.Tipo,
                                    Descripcion = a.Descripcion,
                                    Tipo = a.Tipo,
                                    URL = a.URL

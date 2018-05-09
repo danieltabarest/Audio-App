@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AGM.Entities
 {
-    [Table("Anexos", Schema = "AGM")]
+    [Table("Anexos", Schema = "dbo")]
     public class Anexo : EntidadBase
     {
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
@@ -19,11 +19,6 @@ namespace AGM.Entities
         public int? LugarTrabajoId { get; set; }
         public string Descripcion { get; set; }
         public string Tipo { get; set; }
-
-        public virtual UPM UPM { get; set; }
-        public virtual Visita Visita { get; set; }
-        public virtual LugarTrabajo LugarTrabajo { get; set; }
-
 
 
     }

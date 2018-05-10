@@ -37,7 +37,7 @@ namespace AudioApp.Views
             //player = new AudioPlayer();
             player = DependencyService.Get<IAudioPlayer>();
             player.FinishedPlaying += Player_FinishedPlaying;
-            //recorder.AudioInputReceived += _recoder_AudioInputReceived;
+            recorder.AudioInputReceived += _recoder_AudioInputReceived;
         }
 
         async void Record_Clicked(object sender, EventArgs e)
@@ -180,7 +180,24 @@ namespace AudioApp.Views
 
         private async void UploadFile_Clicked(object sender, EventArgs e)
         {
-            await PushApiFile();
+            try
+            {
+                if (_mediaFile != null)
+                {
+                    await PushApiFile();
+                }
+
+                var result = await synchronizationService.SynchronizationUploadToWebAsync(Items);
+
+                if (result)
+                {
+                    RemotePathLabel.Text = "Audio OK";
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private async Task PushApiFile()
@@ -221,9 +238,7 @@ namespace AudioApp.Views
                 var httpClient = new HttpClient();
 
                 var uploadServiceBaseAddress = "http://localhost:12214/api/Files/Upload";
-                //"http://AudioApp.azurewebsites.net/api/Files/Upload";
-                //"http://localhost:12214/api/Files/Upload";
-
+            
                 var httpResponseMessage = await httpClient.PostAsync(uploadServiceBaseAddress, content);
 
                 RemotePathLabel.Text = await httpResponseMessage.Content.ReadAsStringAsync();
@@ -275,16 +290,10 @@ namespace AudioApp.Views
                 _anexo.EstadoId = 1;
                 _anexo.FechaCreacion = DateTime.Now;
                 _anexo.UsuarioCreacion = "test";
-                _anexo.UsuarioModificacion= "test";
+                _anexo.UsuarioModificacion = "test";
                 _anexo.FechaModificacion = DateTime.Now; ;
                 Items.Add(_anexo);
 
-                var result = await synchronizationService.SynchronizationUploadToWebAsync(Items);
-
-                if (result)
-                {
-                    RemotePathLabel.Text = "Audio OK";
-                }
             }
             catch (Exception ex)
             {

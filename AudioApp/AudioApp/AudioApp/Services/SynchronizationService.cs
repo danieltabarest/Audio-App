@@ -19,10 +19,6 @@ namespace AudioApp.Services
         static string Token { get; set; }
         private readonly JsonSerializerSettings _serializerSettings;
 
-        //public ISingleObjectCacheRepository<Usuario> _UsuariosRepository;
-        //public ISingleObjectCacheRepository<Anexo> _AnexosRepository;
-
-
         private readonly AuthenticationService authenticationService;
         private readonly ApiService apiService;
         public SynchronizationService()
@@ -61,7 +57,7 @@ namespace AudioApp.Services
                 {
 
                     //Send entities
-                    res = await apiService.Post<Anexo>("/api/", "Uploads", authenticationService.tokenResponse.TokenType, authenticationService.tokenResponse.AccessToken, resultuploadAnexo);
+                    res = await apiService.Post<Anexo>("/api/", "Uploads", "", "", resultuploadAnexo);
                     List<Anexo> _list = (List<Anexo>)res.Result;
                     if (_list.Count > 0)
                     {
@@ -73,7 +69,7 @@ namespace AudioApp.Services
                         ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                     };
                     //Send files
-                    foreach (var item in resultuploadAnexo)
+                   /* foreach (var item in resultuploadAnexo)
                     {
 
                         if (Jsons.ContainsKey(item.ID) == false)
@@ -89,7 +85,7 @@ namespace AudioApp.Services
                                 namefails.Add("AnexosRepository", res.Message);
                             }
                         }
-                    }
+                    }*/
                 }
             }
             catch (Exception ex)

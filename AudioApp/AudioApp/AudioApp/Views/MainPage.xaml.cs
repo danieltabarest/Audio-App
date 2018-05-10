@@ -8,6 +8,7 @@ using Plugin.AudioRecorder;
 using AudioApp.Forms;
 using AudioApp.Helpers;
 using AudioApp.Models;
+using AudioApp.Services;
 
 namespace AudioApp.Views
 {
@@ -16,14 +17,16 @@ namespace AudioApp.Views
         AudioRecorderService recorder;
         IAudioPlayer player;
         //DependencyService.Get<IAudioPlayer> player;
-
+        SynchronizationService synchronizationService;
 
         private MediaFile _mediaFile;
 
         public MainPage()
         {
             InitializeComponent();
+
             this.BindingContext = this;
+            synchronizationService = new SynchronizationService();
             recorder = new AudioRecorderService
             {
                 StopRecordingAfterTimeout = true,
@@ -34,6 +37,7 @@ namespace AudioApp.Views
             //player = new AudioPlayer();
             player = DependencyService.Get<IAudioPlayer>();
             player.FinishedPlaying += Player_FinishedPlaying;
+            //recorder.AudioInputReceived += _recoder_AudioInputReceived;
         }
 
         async void Record_Clicked(object sender, EventArgs e)
@@ -80,12 +84,12 @@ namespace AudioApp.Views
                         InsertAttachDB(filePath, filePath);
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
                 //blow up the app!
-               // throw ex;
+                // throw ex;
             }
         }
 
@@ -113,7 +117,7 @@ namespace AudioApp.Views
             catch (Exception ex)
             {
                 //blow up the app!
-               // throw ex;
+                // throw ex;
             }
         }
 
@@ -176,6 +180,11 @@ namespace AudioApp.Views
 
         private async void UploadFile_Clicked(object sender, EventArgs e)
         {
+            await PushApiFile();
+        }
+
+        private async Task PushApiFile()
+        {
             var content = new MultipartFormDataContent();
 
             content.Add(new StreamContent(_mediaFile.GetStream()),
@@ -191,6 +200,56 @@ namespace AudioApp.Views
             var httpResponseMessage = await httpClient.PostAsync(uploadServiceBaseAddress, content);
 
             RemotePathLabel.Text = await httpResponseMessage.Content.ReadAsStringAsync();
+        }
+
+        private async void _recoder_AudioInputReceived(object sender, string e)
+        {
+            try
+            {
+                var path = e;
+                var file = await GetResourceBDAsync(path);
+                var content = new MultipartFormDataContent();
+
+                ByteArrayContent baContent = new ByteArrayContent(file);
+                StringContent descriptioncontent = new StringContent("1");
+                content.Add(baContent, "UploadedImage", path);
+
+                //content.Add(new StreamContent(file),
+                //    "\"file\"",
+                //    $"\"{path}\"");
+
+                var httpClient = new HttpClient();
+
+                var uploadServiceBaseAddress = "http://localhost:12214/api/Files/Upload";
+                //"http://AudioApp.azurewebsites.net/api/Files/Upload";
+                //"http://localhost:12214/api/Files/Upload";
+
+                var httpResponseMessage = await httpClient.PostAsync(uploadServiceBaseAddress, content);
+
+                RemotePathLabel.Text = await httpResponseMessage.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                RemotePathLabel.Text = ex.Message;
+            }
+        }
+
+
+        protected async Task<byte[]> GetResourceBDAsync(string namefile)
+        {
+            try
+            {
+                bool isexist = await PCLHelper.IsFileExistAsync(namefile);
+                if (isexist)
+                {
+                    return await PCLHelper.LoadImage(namefile);
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public ObservableRangeCollection<Anexo> Items { get; set; } = new ObservableRangeCollection<Anexo>();
@@ -216,13 +275,24 @@ namespace AudioApp.Views
                 _anexo.EstadoId = 1;
                 _anexo.FechaCreacion = DateTime.Now;
                 _anexo.UsuarioCreacion = "test";
+                _anexo.UsuarioModificacion= "test";
                 _anexo.FechaModificacion = DateTime.Now; ;
                 Items.Add(_anexo);
+
+                var result = await synchronizationService.SynchronizationUploadToWebAsync(Items);
+
+                if (result)
+                {
+                    RemotePathLabel.Text = "Audio OK";
+                }
             }
             catch (Exception ex)
             {
+                RemotePathLabel.Text = ex.Message;
             }
             finally { IsBusy = false; }
         }
+
+
     }
 }

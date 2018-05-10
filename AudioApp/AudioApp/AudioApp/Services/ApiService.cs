@@ -176,7 +176,7 @@ namespace AudioApp.Services
             {
                 var client = new HttpClient();
                 //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
-                client.BaseAddress = new Uri(urlBase);
+                client.BaseAddress = new Uri("http://localhost:12214");
                 var url = string.Format("{0}{1}/{2}", servicePrefix, controller, id);
                 var response = await client.GetAsync(url);
 
@@ -302,8 +302,8 @@ namespace AudioApp.Services
                 var request = JsonConvert.SerializeObject(data, _serializerSettings);
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
-                var url = string.Format("{0}{1}{2}", urlBase, servicePrefix, controller);
+                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
+                var url = string.Format("{0}{1}{2}", "http://localhost:12214", servicePrefix, controller);
                 var response = await client.PostAsync(url, content);
 
                 if (!response.IsSuccessStatusCode)
